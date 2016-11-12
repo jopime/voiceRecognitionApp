@@ -4,6 +4,7 @@ All news is courtesy of [EuropaPress](http://www.europapress.es)
 
 ## App Structure
 This app follow this structure:
+
  -[NewsRSS.xml]() as principal vxml
  -[parseRSSData.js]() as script for parse RSS date
  -[TeamGram.xml]() as a grammar for storing keywords for RSS news search
