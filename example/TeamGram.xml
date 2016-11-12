@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="es-ES" version="1.0" root="TEAM" mode="voice">
+
+
+    <rule id="TEAM" scope="public">
+
+      <one-of>
+
+        <item>
+          <item> nacional </item>
+           <tag> out.KeyRSS = "nacional"; </tag>
+	</item>
+
+		<item>
+          <item> internacional </item>
+          	<tag> out.KeyRSS = "internacional" </tag>
+    </item>
+
+    	<item>
+          <item> economía </item>
+           <tag> out.KeyRSS = "economia"; </tag>
+	</item>
+
+		<item>
+          <item> deporte </item>
+           <tag> out.KeyRSS = "deporte"; </tag>
+	</item>
+
+		<item>
+          <item> tecnologia </item>
+           <tag> out.KeyRSS = "tecnologia"; </tag>
+	</item>
+
+		<item>
+          <item> cultura  </item>
+           <tag> out.KeyRSS = "cultura"; </tag>
+	</item>
+
+		<item>
+          <item> andalucía </item>
+           <tag> out.KeyRSS = "andalucia"; </tag>
+	</item>
+
+		<item>
+          <item> granada </item>
+           <tag> out.KeyRSS = "granada"; </tag>
+	</item>
+
+		<item>
+          <item> p p </item>
+           <tag> out.KeyRSS = "pp"; </tag>
+	</item>
+
+		<item>
+          <item> venezuela </item>
+           <tag> out.KeyRSS = "venezuela"; </tag>
+	</item>
+
+		<item>
+          <item> P soe </item>
+           <tag> out.KeyRSS = "psoe"; </tag>
+	</item>
+
+		<item>
+          <item> ciudadanos </item>
+           <tag> out.KeyRSS = "ciudadanos"; </tag>
+	</item>
+
+		<item>
+          <item> futbol </item>
+           <tag> out.KeyRSS = "futbol"; </tag>
+	</item>
+
+		<item>
+          <item> baloncesto </item>
+           <tag> out.KeyRSS = "baloncesto"; </tag>
+	</item>
+
+		<item>
+          <item> ibex </item>
+          <item repeat="0-1"> treinta y cinco </item>
+           <tag> out.KeyRSS = "ibex"; </tag>
+	</item>
+
+		<item>
+          <item> obama </item>
+           <tag> out.KeyRSS = "obama"; </tag>
+	</item>
+
+		<item>
+          <item> rajoi </item>
+           <tag> out.KeyRSS = "rajoy"; </tag>
+	</item>
+
+		<item>
+          <item> onu </item>
+           <tag> out.KeyRSS = "onu"; </tag>
+	</item>
+
+		<item>
+          <item> policía </item>
+           <tag> out.KeyRSS = "policia"; </tag>
+	</item>
+
+		<item>
+          <item> farc </item>
+           <tag> out.KeyRSS = "farc"; </tag>
+	</item>
+
+		<item>
+          <item> terremoto </item>
+           <tag> out.KeyRSS = "terremoto"; </tag>
+	</item>
+
+		<item>
+          <item> europa </item>
+           <tag> out.KeyRSS = "europa"; </tag>
+	</item>
+
+		<item>
+          <item> asia </item>
+           <tag> out.KeyRSS = "asia"; </tag>
+	</item>
+
+		<item>
+          <item> áfrica </item>
+           <tag> out.KeyRSS = "africa"; </tag>
+	</item>
+
+		<item>
+          <item> desaucios </item>
+           <tag> out.KeyRSS = "desahucio"; </tag>
+	</item>
+
+		<item>
+          <item> paro </item>
+           <tag> out.KeyRSS = "paro"; </tag>
+	</item>
+
+		<item>
+          <item> violacion </item>
+           <tag> out.KeyRSS = "violacion"; </tag>
+	</item>
+
+		<item>
+          <item> trump </item>
+           <tag> out.KeyRSS = "trump"; </tag>
+	</item>
+
+		<item>
+          <item> presidente </item>
+           <tag> out.KeyRSS = "presidente"; </tag>
+	</item>
+
+  <item>
+        <item> podemos </item>
+         <tag> out.KeyRSS = "podemos"; </tag>
+</item>
+      </one-of>
+
+   </rule>
+
+</grammar>

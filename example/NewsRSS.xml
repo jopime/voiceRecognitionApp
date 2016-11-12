@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xml:lang="es-ES">
+
+<!-- Declaro script para parsear RSS. -->
+ <script src="parseRSSData.js" fetchtimeout="15s"/>
+
+
+<!-- Asignamos las propiedades al documento. -->
+  <property name="confidencelevel" value=".35"/>
+  <property name="sensitivity" value="0.35"/>
+
+
+<!-- declaramos document scoped variables. -->
+
+  <!-- guardamos la palabra clave que dice el usuario. -->
+  <var name="KeyRSS"/>
+
+  <var name="dataRSS"/>
+
+  <!-- Esta variable referencia los datos del RSS. -->
+  <var name="descriptionArrayRSS"/>
+
+  <!-- Guardams un vector con los elementos "feed" del RSS . -->
+  <var name="fetchRSS"/>
+
+  <!-- Guardamos los datos de cada item. -->
+  <var name="resultCount"/>
+
+  <!-- declaro una gramatica valida para todo el documento link grammar. -->
+  <link next="#Noticia">
+   <grammar root="main">
+    <rule id="main" scope="public">
+     <one-of>
+     <item> inicio </item>
+     <item> menu principal</item>
+     <item> menu </item>
+     </one-of>
+    </rule>
+   </grammar>
+  </link>
+
+
+ <form id="Intro">
+   <block>
+    <prompt bargein="true">
+       Bienvenido al noticiario en tiempo , conoce al instante las últimas noticias sobre cualquier
+       tema de actualidad, diga una palabra y buscaremos cualquier noticia relacionada con ella.
+    </prompt>
+    <goto next="#Noticia"/>
+  </block>
+ </form>
+
+
+ <form id="Noticia">
+<!-- En esta seccion captamos la opcion elegida por el usuario. -->
+  <field name="ChoseWordKey" modal="true">
+
+    <grammar src="TeamGram.xml" type="application/srgs+xml"/>
+
+    <prompt baregin="true">
+     <audio src="ChoseWordKey.wav">
+       ¿sobre que tema quieres buscar?
+     </audio>
+    </prompt>
+
+
+    <filled>
+    <!-- Asignamos el tema elegido a una variable del ambito documento. -->
+     <assign name="document.KeyRSS" expr="lastresult$.interpretation.KeyRSS"/>
+    </filled>
+
+  </field>
+
+
+<!-- En este campo confirmamos el tema "key" elegido. -->
+  <field name="confirmKey">
+
+   <prompt bargein="false">
+      Buscaremos sobre
+
+    <audio expr="document.KeyRSS + '.wav'">
+      <value expr="document.KeyRSS"/>
+    </audio>
+
+      Diga si o no?
+   </prompt>
+   <!-- Definición de gramática. -->
+
+   <grammar xml:lang="es-ES" root = "myrule">
+    <rule id="myrule">
+    <one-of>
+     <item> Si </item>
+     <item> No </item>
+     </one-of>
+    </rule>
+    </grammar>
+
+   <filled>
+     <if cond="confirmKey == 'Si'">
+       <!-- Si se ha reconocido correctamente, cogemos el item del RSS correspondiente. -->
+        <goto next="#Titulares"/>
+      <else/>
+      <!-- Si no volvemos a preguntar. -->
+         <clear namelist="ChoseWordKey confirmKey"/>
+         <goto nextitem="ChoseWordKey"/>
+
+     </if>
+   </filled>
+
+  </field>
+
+ </form>
+
+ <form id="Titulares">
+
+  <block name="fetchData">
+
+   <!-- guardamos el feed del RSS from www.europapress.es -->
+   <data name="fetchRSS" srcexpr="'http://www.europapress.es/rss/rss.aspx?buscar='+document.KeyRSS"/>
+
+   <!-- asignamos a una variable VXML el data captado -->
+   <assign name="document.dataRSS" expr="fetchRSS.documentElement"/>
+
+   <!-- Contamos el número de artículos encontrado. -->
+   <assign name="document.resultCount" expr="getCount(fetchRSS)"/>
+
+   <assign name="document.descriptionArrayRSS" expr="assignArray(fetchRSS, 'description', 'item')"/>
+
+    <prompt>
+      Tenemos
+
+     <audio expr="document.resultCount + '.wav'">
+      <value expr="document.resultCount"/>
+     </audio>
+
+      articulos disponibles para la palabra clave
+
+     <audio expr="document.KeyRSS + '.wav'">
+      <value expr="document.KeyRSS"/>
+      <break size="small"/>
+     </audio>
+
+     <audio src="content.wav">
+      Todo el contenido es cortesia de europapress
+      Para elegir otro tema o palabra clabe , dí menu principal en cualquier momento.
+     </audio>
+     <break size="medium"/>
+    </prompt>
+
+	<!-- recorremos las diferentes noticias almacenadas en el array -->
+    <foreach item="article" array="document.descriptionArrayRSS">
+     <prompt>
+       Nuevo articulo :
+     	<value expr="article"/>
+      	<break size="medium"/>
+     </prompt>
+    </foreach>
+
+     <prompt bargein="true">
+        No hay mas noticias disponibles
+
+     <audio expr="document.KeyRSS + '.wav'">
+      <value expr="document.KeyRSS"/>
+      <break size="small"/>
+     </audio>
+
+     <audio src="moreInfo.wav">
+       Para mas informacion sobre este artículo, porfavor visita  w w w europapress punto com
+      <break size="small"/>
+     </audio>
+
+     <audio src="returnToMain.wav">
+      Volvemos al menu principal, donde puedes elegir otro tema sobre el que informarte o colgarnos.
+     </audio>
+	</prompt>
+
+      <goto nextitem="Dummy"/>
+
+  </block>
+
+<!-- This is a dummy field to activate the link grammars. -->
+  <field name="Dummy" type="boolean">
+
+  	<!-- This property specifies the field time out in seconds. -->
+   <property name="timeout" value="0.5s"/>
+
+    <!-- This <noinput> catches the timeout and returns to the start. -->
+   <noinput>
+    <goto next="NBA_newsreader.xml"/>
+   </noinput>
+   <filled/>
+  </field>
+ </form>
+
+
+</vxml>
