@@ -9,4 +9,4 @@ This app follow this structure:
  -[TeamGram.xml]() as a grammar for storing keywords for RSS news search
 
 ## Probe the App
-Using https://evolution.voxeo.com for storage app and [Skype](skype:+990009369990065402?call) for probe this.
+Using https://evolution.voxeo.com for storage app and [Skype](http://skype:+990009369990065402?call) for probe this.
