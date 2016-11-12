@@ -5,7 +5,7 @@
  <script src="parseRSSData.js" fetchtimeout="15s"/>
 
 
-<!-- Asignamos las propiedades al documento. -->
+<!-- Asignamos las propiedades al documento. (nivel de confianza y sensibilidad) -->
   <property name="confidencelevel" value=".35"/>
   <property name="sensitivity" value="0.35"/>
 
@@ -40,6 +40,7 @@
   </link>
 
 
+
  <form id="Intro">
    <block>
     <prompt bargein="true">
@@ -50,9 +51,8 @@
   </block>
  </form>
 
-
+ <!-- En esta seccion captamos la opcion elegida por el usuario. -->
  <form id="Noticia">
-<!-- En esta seccion captamos la opcion elegida por el usuario. -->
   <field name="ChoseWordKey" modal="true">
 
     <grammar src="TeamGram.xml" type="application/srgs+xml"/>
@@ -63,6 +63,10 @@
      </audio>
     </prompt>
 
+  <catch event="nomatch noinput" count="2">
+      Si no sabe que palabra buscar a continuacion le diremos una lista de las mas usadas:
+      Trump, elecciones, rajoy,internacional,economía,deportes,cultura,tencología
+  </catch>
 
     <filled>
     <!-- Asignamos el tema elegido a una variable del ambito documento. -->
@@ -81,9 +85,11 @@
     <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
     </audio>
-
       Diga si o no?
    </prompt>
+   <catch event="nomatch noinput" count="1">
+     conteste si o no para aceptar buscar una noticia con dicha palabra clave.
+   </catch>
    <!-- Definición de gramática. -->
 
    <grammar xml:lang="es-ES" root = "myrule">
@@ -108,7 +114,6 @@
    </filled>
 
   </field>
-
  </form>
 
  <form id="Titulares">
@@ -126,6 +131,10 @@
 
    <assign name="document.descriptionArrayRSS" expr="assignArray(fetchRSS, 'description', 'item')"/>
 
+   <!-- ignoramos la primera posición ya que esta guarda el nombre de la procedencia de las noticias -->
+   <assign name="document.descriptionArrayRSS" expr="document.descriptionArrayRSS.slice(1);"/>
+
+
     <prompt>
       Tenemos
 
@@ -142,7 +151,7 @@
 
      <audio src="content.wav">
       Todo el contenido es cortesia de europapress
-      Para elegir otro tema o palabra clabe , dí menu principal en cualquier momento.
+      Para elegir otro tema o palabra clabe , dí menu en cualquier momento.
      </audio>
      <break size="medium"/>
     </prompt>
@@ -186,7 +195,7 @@
 
     <!-- This <noinput> catches the timeout and returns to the start. -->
    <noinput>
-    <goto next="NBA_newsreader.xml"/>
+    <goto next="NewsRSS.xml"/>
    </noinput>
    <filled/>
   </field>

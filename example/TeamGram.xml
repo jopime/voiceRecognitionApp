@@ -33,6 +33,11 @@
            <tag> out.KeyRSS = "tecnologia"; </tag>
 	</item>
 
+    <item>
+          <item> tecnologia </item>
+           <tag> out.KeyRSS = "tecnologia"; </tag>
+</item>
+
 		<item>
           <item> cultura  </item>
            <tag> out.KeyRSS = "cultura"; </tag>
@@ -88,6 +93,24 @@
           <item> obama </item>
            <tag> out.KeyRSS = "obama"; </tag>
 	</item>
+
+  <item>
+        <item> cordoba </item>
+         <tag> out.KeyRSS = "cordoba"; </tag>
+</item>
+
+<item>
+      <item> granada </item>
+       <tag> out.KeyRSS = "granada"; </tag>
+</item>
+
+<item>
+      <item> feria </item>
+      <item> ferias </item>
+      <item> fiesta </item>
+      <item> fiestas </item>
+       <tag> out.KeyRSS = "fiestas"; </tag>
+</item>
 
 		<item>
           <item> rajoi </item>
