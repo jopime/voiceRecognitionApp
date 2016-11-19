@@ -2,7 +2,7 @@
 <vxml version = "2.1" xml:lang="es-ES">
 
 <!-- Declaro script para parsear RSS. -->
- <script src="parseRSSData.js" fetchtimeout="15s"/>
+<script src="parseRSSData.js" fetchtimeout="15s"/>
 
 
 <!-- Asignamos las propiedades al documento. (nivel de confianza y sensibilidad) -->
