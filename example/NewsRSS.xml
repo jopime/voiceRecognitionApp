@@ -64,8 +64,8 @@
     </prompt>
 
   <catch event="nomatch noinput" count="2">
-      Si no sabe que palabra buscar a continuacion le diremos una lista de las mas usadas:
-      Trump, elecciones, rajoy,internacional,economía,deportes,cultura,tencología
+      Si no sabe que palabra buscar, a continuacion, le diremos una lista de las más usadas:
+      Trump. Elecciones. rajoy. internacional. economía. deportes. cultura. tencología.
   </catch>
 
     <filled>
@@ -80,15 +80,15 @@
   <field name="confirmKey">
 
    <prompt bargein="false">
-      Buscaremos sobre
+      Buscaremos sobre.
 
     <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
     </audio>
-      Diga si o no?
+      Diga. si, o no?
    </prompt>
    <catch event="nomatch noinput" count="1">
-     conteste si o no para aceptar buscar una noticia con dicha palabra clave.
+     conteste. si, o no para aceptar buscar una noticia con dicha palabra clave.
    </catch>
    <!-- Definición de gramática. -->
 
@@ -150,8 +150,8 @@
      </audio>
 
      <audio src="content.wav">
-      Todo el contenido es cortesia de europapress
-      Para elegir otro tema o palabra clabe , dí menu en cualquier momento.
+      Todo el contenido es cortesia de europapress,
+      Para elegir otro tema o palabra clave, diga. menú. en cualquier momento.
      </audio>
      <break size="medium"/>
     </prompt>
@@ -159,7 +159,7 @@
 	<!-- recorremos las diferentes noticias almacenadas en el array -->
     <foreach item="article" array="document.descriptionArrayRSS">
      <prompt>
-       Nuevo articulo :
+       Nuevo articulo:
      	<value expr="article"/>
       	<break size="medium"/>
      </prompt>
@@ -174,12 +174,12 @@
      </audio>
 
      <audio src="moreInfo.wav">
-       Para mas informacion sobre este artículo, porfavor visita  w w w europapress punto com
+       Para mas informacion sobre este artículo, por favor visita.  w w w punto europapress punto com
       <break size="small"/>
      </audio>
 
      <audio src="returnToMain.wav">
-      Volvemos al menu principal, donde puedes elegir otro tema sobre el que informarte o colgarnos.
+      Volvemos al menu principal, donde puedes elegir otro tema sobre el que informarte, o, colgarnos.
      </audio>
 	</prompt>
 
