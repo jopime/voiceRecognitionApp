@@ -44,6 +44,7 @@
  <form id="Intro">
    <block>
     <prompt bargein="true">
+        Estamos en el menú principal.
        Bienvenido al noticiario en tiempo , conoce al instante las últimas noticias sobre cualquier
        tema de actualidad, diga una palabra y buscaremos cualquier noticia relacionada con ella.
     </prompt>
@@ -142,7 +143,7 @@
       <value expr="document.resultCount"/>
      </audio>
 
-      articulos disponibles para la palabra clave
+      articulos disponibles para la palabra clave,
 
      <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
