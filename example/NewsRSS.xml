@@ -85,10 +85,10 @@
     <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
     </audio>
-      Diga. si, o no?
+      ¿Estás de acuerdo?. Diga, sí. o no?
    </prompt>
    <catch event="nomatch noinput" count="1">
-     conteste. si, o no para aceptar buscar una noticia con dicha palabra clave.
+     conteste. si, o no, para aceptar buscar una noticia con dicha palabra clave.
    </catch>
    <!-- Definición de gramática. -->
 
