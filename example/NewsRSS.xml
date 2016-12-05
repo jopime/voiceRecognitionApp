@@ -39,7 +39,20 @@
    </grammar>
   </link>
 
-
+  <link next="#Exit">
+   <grammar root="main">
+    <rule id="mainExit" scope="public">
+     <one-of>
+     <item> Salir </item>
+     <item> Adios</item>
+     <item> Fin </item>
+     <item> Acabar </item>
+     <item> quiero acabar</item>
+      <item> deseo acabar</item>
+     </one-of>
+    </rule>
+   </grammar>
+  </link>
 
  <form id="Intro">
    <block>
@@ -202,5 +215,12 @@
   </field>
  </form>
 
+ <form id="Exit">
+   <block>
+    <prompt bargein="False">
+        Gracias por su consulta, ¡HASTA OTRA!.
+    </prompt>
+  </block>
+ </form>
 
 </vxml>
