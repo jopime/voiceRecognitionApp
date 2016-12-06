@@ -2,7 +2,7 @@
 <vxml version = "2.1" xml:lang="es-ES">
 
 <!-- Declaro script para parsear RSS. -->
-<script src="parseRSSData.js" fetchtimeout="15s"/>
+ <script src="parseRSSData.js" fetchtimeout="15s"/>
 
 
 <!-- Asignamos las propiedades al documento. (nivel de confianza y sensibilidad) -->
@@ -41,14 +41,15 @@
 
   <link next="#Exit">
    <grammar root="main">
-    <rule id="mainExit" scope="public">
+    <rule id="main" scope="public">
      <one-of>
-     <item> Salir </item>
-     <item> Adios</item>
-     <item> Fin </item>
-     <item> Acabar </item>
-     <item> quiero acabar</item>
-      <item> deseo acabar</item>
+     <item> salir </item>
+     <item> salida</item>
+     <item> fin </item>
+     <item> acabar </item>
+     <item> quiero acabar </item>
+     <item> colgar </item>
+     <item> adios </item>
      </one-of>
     </rule>
    </grammar>
@@ -57,7 +58,6 @@
  <form id="Intro">
    <block>
     <prompt bargein="true">
-        Estamos en el menú principal.
        Bienvenido al noticiario en tiempo , conoce al instante las últimas noticias sobre cualquier
        tema de actualidad, diga una palabra y buscaremos cualquier noticia relacionada con ella.
     </prompt>
@@ -73,13 +73,14 @@
 
     <prompt baregin="true">
      <audio src="ChoseWordKey.wav">
+       Estamos en el Menu Principal,
        ¿sobre que tema quieres buscar?
      </audio>
     </prompt>
 
   <catch event="nomatch noinput" count="2">
-      Si no sabe que palabra buscar, a continuacion, le diremos una lista de las más usadas:
-      Trump. Elecciones. rajoy. internacional. economía. deportes. cultura. tencología.
+      Si no sabe que palabra buscar a continuacion le diremos una lista de las mas usadas:
+      Trump, elecciones, rajoy,internacional,economía,deportes,cultura,tencología
   </catch>
 
     <filled>
@@ -94,15 +95,15 @@
   <field name="confirmKey">
 
    <prompt bargein="false">
-      Buscaremos sobre.
+      Buscaremos sobre
 
     <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
     </audio>
-      ¿Estás de acuerdo?. Diga, sí. o no?
+      ¿Esta de acuerdo?, diga si o no
    </prompt>
    <catch event="nomatch noinput" count="1">
-     conteste. si, o no, para aceptar buscar una noticia con dicha palabra clave.
+     conteste, si o no, para aceptar buscar una noticia con dicha palabra clave.
    </catch>
    <!-- Definición de gramática. -->
 
@@ -156,7 +157,7 @@
       <value expr="document.resultCount"/>
      </audio>
 
-      articulos disponibles para la palabra clave,
+      articulos disponibles para la palabra clave
 
      <audio expr="document.KeyRSS + '.wav'">
       <value expr="document.KeyRSS"/>
@@ -164,8 +165,8 @@
      </audio>
 
      <audio src="content.wav">
-      Todo el contenido es cortesia de europapress,
-      Para elegir otro tema o palabra clave, diga. menú. en cualquier momento.
+      Todo el contenido es cortesia de europapress
+      Para elegir otro tema o palabra clave , dí menu en cualquier momento.
      </audio>
      <break size="medium"/>
     </prompt>
@@ -173,7 +174,7 @@
 	<!-- recorremos las diferentes noticias almacenadas en el array -->
     <foreach item="article" array="document.descriptionArrayRSS">
      <prompt>
-       Nuevo articulo:
+       Nuevo articulo :
      	<value expr="article"/>
       	<break size="medium"/>
      </prompt>
@@ -188,12 +189,13 @@
      </audio>
 
      <audio src="moreInfo.wav">
-       Para mas informacion sobre este artículo, por favor visita.  w w w punto europapress punto com
+       Para mas informacion sobre este artículo, porfavor visita  w w w europapress punto com
       <break size="small"/>
      </audio>
 
      <audio src="returnToMain.wav">
-      Volvemos al menu principal, donde puedes elegir otro tema sobre el que informarte, o, colgarnos.
+      Volvemos al menu principal, donde puedes elegir otro tema sobre el que informarte o colgarnos.
+
      </audio>
 	</prompt>
 
@@ -214,11 +216,10 @@
    <filled/>
   </field>
  </form>
-
  <form id="Exit">
    <block>
-    <prompt bargein="False">
-        Gracias por su consulta, ¡HASTA OTRA!.
+    <prompt bargein="true">
+       adios.
     </prompt>
   </block>
  </form>
